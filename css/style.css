@@ -12,10 +12,11 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
+  color: #34495e
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(177, 177, 177, .5);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   padding: 3rem; 
   border-radius: 1.5rem;
@@ -54,7 +55,10 @@ body {
 }
 
 #weather-data {
-  margin-top: 2.5rem; 
+  margin-top: 2.5rem;
+  border-top: 1px solid #ffffff;
+  padding-top: 1.5em;
+  
 }
 
 #weather-data h2 {
@@ -72,10 +76,13 @@ body {
 #temperature {
   font-size: 3rem;
   font-weight: bold;
+  color: #34495e;
 }
 
 #description {
   text-transform: capitalize;
+  font-size: 1em;
+  font-weight:normal;
 }
 
 #description-container {
@@ -93,6 +100,12 @@ body {
   flex: 1;
 }
 
+#details-container #humidity {
+  border-right: 1px solid #ffffff;
+  margin: 0.6rem;
+  padding: 0.6rem;
+}
+
 .hide {
   display: none;
 }
@@ -105,4 +118,9 @@ body {
 #error-message {
   color: #dc3545; /* Error red */
   margin-top: 1rem;
+}
+
+.thermometer-icon{
+  width: 50px;
+  height: 50px;
 }
