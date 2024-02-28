@@ -7,6 +7,7 @@
 
 body {
   background: linear-gradient(to bottom right, #48cae4, #90e0ef);
+  background-image:url(../src/weather.avif);
   display: flex;
   justify-content: center;
   align-items: center;
