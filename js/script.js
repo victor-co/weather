@@ -1,4 +1,6 @@
-import apiKey from "./apiKey.js";
+import apiKeys from "./apiKey.js";
+const openWeatherKey = apiKeys.openWeatherKey;
+const unsplashKey = apiKeys.unsplashKey;
 
 const apiFlags = "https://flagsapi.com/";
 
@@ -14,12 +16,11 @@ const humidityElement = document.querySelector("#humidity span");
 const windElement = document.querySelector("#wind span");
 const weatherContainer = document.querySelector("#weather-data");
 
-
 const errorDiv = document.querySelector("#error-message");
 
 // Functions
 const getWeatherData = async (city) => {
-  const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
+  const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${openWeatherKey}&lang=pt_br`;
 
   const res = await fetch(apiWeatherURL);
   const data = await res.json();
@@ -33,26 +34,48 @@ const getWeatherData = async (city) => {
   return data;
 };
 
+const getUnsplashImage = async (city) => {
+  const url = `https://api.unsplash.com/photos/random?query=${city}&client_id=${unsplashKey}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data.urls.regular;
+  } catch (error) {
+    console.error("Erro ao buscar a imagem:", error);
+    return null;
+  }
+};
+
 const showWeatherData = async (city) => {
   try {
-  const data = await getWeatherData(city);
+    const data = await getWeatherData(city);
 
-  cityElement.innerText = data.name;
-  tempElement.innerText = parseInt(data.main.temp);
-  descElement.innerText = data.weather[0].description;
-  weatherIconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
-  );
-  countryElement.setAttribute(
-    "src",
-    `${apiFlags}${data.sys.country}/flat/64.png`
-  );
-  humidityElement.innerText = `${data.main.humidity}%`;
-  windElement.innerText = `${data.wind.speed}Km/h`;
+    cityElement.innerText = data.name;
+    tempElement.innerText = parseInt(data.main.temp);
+    descElement.innerText = data.weather[0].description;
+    weatherIconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+    );
+    countryElement.setAttribute(
+      "src",
+      `${apiFlags}${data.sys.country}/flat/64.png`
+    );
+    humidityElement.innerText = `${data.main.humidity}%`;
+    windElement.innerText = `${data.wind.speed}Km/h`;
 
-  weatherContainer.classList.remove("hide");
+    weatherContainer.classList.remove("hide");
     errorDiv.classList.add("hide");
+    const imageUrl = await getUnsplashImage(city);
+
+   
+    if (imageUrl) {
+      document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(${imageUrl})`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+    }
   } catch (error) {
     weatherContainer.classList.add("hide");
     showError(error.message);
@@ -67,7 +90,7 @@ const showError = (message) => {
 
 const hideError = () => {
   const errorDiv = document.querySelector("#error-message");
-  errorDiv.classList.add("hide"); 
+  errorDiv.classList.add("hide");
 };
 
 // Events
