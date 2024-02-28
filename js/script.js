@@ -48,7 +48,7 @@ const getUnsplashImage = async (city) => {
   }
 };
 
-const showWeatherData = async (city) => {
+async function doSearch(city) {
   try {
     const data = await getWeatherData(city);
 
@@ -68,9 +68,9 @@ const showWeatherData = async (city) => {
 
     weatherContainer.classList.remove("hide");
     errorDiv.classList.add("hide");
+
     const imageUrl = await getUnsplashImage(city);
 
-   
     if (imageUrl) {
       document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url(${imageUrl})`;
       document.body.style.backgroundSize = "cover";
@@ -80,7 +80,7 @@ const showWeatherData = async (city) => {
     weatherContainer.classList.add("hide");
     showError(error.message);
   }
-};
+}
 
 const showError = (message) => {
   const errorDiv = document.querySelector("#error-message");
@@ -97,11 +97,10 @@ const hideError = () => {
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
-  showWeatherData(city);
+  doSearch(city);
 
   if (city) {
     hideError();
-    showWeatherData(city);
   } else {
     showError("Informe um local.");
   }
@@ -110,6 +109,6 @@ searchBtn.addEventListener("click", (e) => {
 cityInput.addEventListener("keydown", (e) => {
   if (e.code === "Enter") {
     const city = e.target.value;
-    showWeatherData(city);
+    doSearch(city);
   }
 });
