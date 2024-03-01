@@ -48,7 +48,7 @@ const getUnsplashImage = async (city) => {
   }
 };
 
-async function doSearch(city) {
+const doSearch = async (city) => {
   try {
     const data = await getWeatherData(city);
 
@@ -80,7 +80,7 @@ async function doSearch(city) {
     weatherContainer.classList.add("hide");
     showError(error.message);
   }
-}
+};
 
 const showError = (message) => {
   const errorDiv = document.querySelector("#error-message");
@@ -108,7 +108,7 @@ searchBtn.addEventListener("click", (e) => {
 
 cityInput.addEventListener("keydown", (e) => {
   if (e.code === "Enter") {
-    const city = e.target.value;
+    const city = e.target.value.trim();
     doSearch(city);
   }
 }); 
