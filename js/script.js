@@ -38,8 +38,8 @@ const getUnsplashImage = async (city) => {
   const url = `https://api.unsplash.com/photos/random?query=${city}&client_id=${unsplashKey}`;
 
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const res = await fetch(url);
+    const data = await res.json();
 
     return data.urls.regular;
   } catch (error) {
