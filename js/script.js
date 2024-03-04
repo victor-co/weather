@@ -98,12 +98,6 @@ searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const city = cityInput.value.trim();
   doSearch(city);
-
-  if (city) {
-    hideError();
-  } else {
-    showError("Informe um local.");
-  }
 });
 
 cityInput.addEventListener("keydown", (e) => {
