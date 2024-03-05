@@ -88,11 +88,6 @@ const showError = (message) => {
   errorDiv.classList.remove("hide");
 };
 
-const hideError = () => {
-  const errorDiv = document.querySelector("#error-message");
-  errorDiv.classList.add("hide");
-};
-
 // Events
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
