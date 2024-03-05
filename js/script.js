@@ -83,7 +83,6 @@ const doSearch = async (city) => {
 };
 
 const showError = (message) => {
-  const errorDiv = document.querySelector("#error-message");
   errorDiv.innerText = message;
   errorDiv.classList.remove("hide");
 };
