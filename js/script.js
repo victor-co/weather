@@ -99,4 +99,4 @@ cityInput.addEventListener("keydown", (e) => {
     const city = e.target.value.trim();
     doSearch(city);
   }
-}); 
+});
