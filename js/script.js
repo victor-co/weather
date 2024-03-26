@@ -48,7 +48,7 @@ const getUnsplashImage = async (city) => {
   }
 };
 
-const doSearch = async (city) => {
+ const doSearch = async (city) => {
   try {
     const data = await getWeatherData(city);
 

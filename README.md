@@ -33,7 +33,7 @@ This application provides real-time weather information around the world. It dis
 
 ## Credits
 
-* Weather data: [OpenWeatherMap API](https://openweathermap.org/)
-* Images: [Unsplash](https://unsplash.com/)
-* Flags: [Flags API](https://flagsapi.com/)
+*  Weather data: [OpenWeatherMap API](https://openweathermap.org/)
+*  Images: [Unsplash](https://unsplash.com/)
+*  Flags: [Flags API](https://flagsapi.com/)
 
